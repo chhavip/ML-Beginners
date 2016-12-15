@@ -40,6 +40,8 @@ y = np.array(df['label'])
 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size = 0.2)
 
+
+print('Confidence using Linear Regression')
 clf = LinearRegression()
 
 clf.fit(X_train, y_train)
@@ -47,3 +49,13 @@ clf.fit(X_train, y_train)
 accu = clf.score(X_test, y_test)
 
 print(accu)
+
+print('Confidence using SVM in different modes')
+
+for k in ['linear','poly','rbf','sigmoid']:
+    clf = svm.SVR(kernel=k)
+    clf.fit(X_train, y_train)
+    confidence = clf.score(X_test, y_test)
+    print(k,confidence)
+
+print('Best comes out to be Linear Regression in this case')
