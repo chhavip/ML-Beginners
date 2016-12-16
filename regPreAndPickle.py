@@ -6,6 +6,7 @@ from sklearn import preprocessing, cross_validation, svm
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 from matplotlib import style
+import pickle
 
 style.use('ggplot')
 
@@ -50,10 +51,16 @@ y = np.array(df['label'])
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size = 0.2)
 
 
-print('Confidence using Linear Regression')
-clf = LinearRegression()
+# print('Confidence using Linear Regression')
+# clf = LinearRegression(n_jobs=-1)
 
-clf.fit(X_train, y_train)
+# #training step, we are going to save it. re-train it once in a month
+# clf.fit(X_train, y_train)
+# with open('linearregression.pickle', 'wb') as f:
+# 	pickle.dump(clf, f)
+
+pickle_in = open('linearregression.pickle', 'rb')
+clf = pickle.load(pickle_in)
 
 accu = clf.score(X_test, y_test)
 
