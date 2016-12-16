@@ -58,18 +58,6 @@ clf.fit(X_train, y_train)
 
 accu = clf.score(X_test, y_test)
 
-# print(accu)
-
-# print('Confidence using SVM in different modes')
-
-# for k in ['linear','poly','rbf','sigmoid']:
-#     clf = svm.SVR(kernel=k)
-#     clf.fit(X_train, y_train)
-#     confidence = clf.score(X_test, y_test)
-#     print(k,confidence)
-
-# print('Best comes out to be Linear Regression in this case')
-
 forecast_set = clf.predict(X_late)
 
 print(forecast_set, accu, forecast_out)
@@ -85,6 +73,8 @@ for i in forecast_set:
 	next_date = datetime.datetime.fromtimestamp(next_unix)
 	next_unix += one_da
 	df.loc[next_date] = [np.nan for _ in range(len(df.columns)-1)] + [i]
+
+print(df.head())
 
 df['Adj. Close'].plot()
 df['Forecast'].plot()
