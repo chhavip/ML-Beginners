@@ -20,7 +20,9 @@ print(accu)
 
 
 example_measures = np.array([4,2,1,1,1,2,3,2,1])
-example_measures = example_measures.reshape(1,-1)
+
+#reshape is required to change data to required values
+example_measures = example_measures.reshape(len(example_measures),-1)
 
 prediction = clf.predict(example_measures)
 

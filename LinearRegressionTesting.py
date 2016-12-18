@@ -6,6 +6,8 @@ import random
 
 style.use('fivethirtyeight')
 
+##This time we 
+
 #xs = np.array([1,2,3,4,5,6], dtype = np.float64)
 #zs = np.array([5,4,6,5,6,7], dtype = np.float64)
 
